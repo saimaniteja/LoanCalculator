@@ -3,7 +3,7 @@ document.getElementById('loan-form').addEventListener('submit', function(e){
   // Hide results
   document.getElementById('results').style.display = 'none';
   
-  // Shoe loader
+  // Show loader
   document.getElementById('loading').style.display = 'block';
 
   setTimeout(calculateResults, 2000);
@@ -42,42 +42,39 @@ function calculateResults(){
     document.getElementById('loading').style.display = 'none';
 
   } else {
-    showError('Please check your numbers')
+    showError('Please check your numbers');
   }
-
 }
- 
-  // Show Error
-  function showError(error) {
 
-    // Show results
-    document.getElementById('results').style.display = 'none';
-
-    // Hide loader
-    document.getElementById('loading').style.display = 'none';
-
-    // Create a div element
-    const errorDiv = document.createElement('div');
-
-    // Get elements
-    const card = document.querySelector('.card');
-    const heading = document.querySelector('.heading');
-
-    // Add class
-    errorDiv.className = 'alert alert-danger';
-
-    // Create textnode and Append
-    errorDiv.appendChild(document.createTextNode(error));
-
-    card.insertBefore(errorDiv, heading);
-
-    // Set time for error to 3 seconds
-    setTimeout(clearError, 3000);
-  }
-
-  //clear Error
-  function clearError() {
-    document.querySelector('.alert').remove();
-  }
-
+// Show Error
+function showError(error){
+  // Hide results
+  document.getElementById('results').style.display = 'none';
   
+  // Hide loader
+  document.getElementById('loading').style.display = 'none';
+
+  // Create a div
+  const errorDiv = document.createElement('div');
+
+  // Get elements
+  const card = document.querySelector('.card');
+  const heading = document.querySelector('.heading');
+
+  // Add class
+  errorDiv.className = 'alert alert-danger';
+
+  // Create text node and append to div
+  errorDiv.appendChild(document.createTextNode(error));
+
+  // Insert error above heading
+  card.insertBefore(errorDiv, heading);
+
+  // Clear error after 3 seconds
+  setTimeout(clearError, 3000);
+}
+
+// Clear error
+function clearError(){
+  document.querySelector('.alert').remove();
+}
